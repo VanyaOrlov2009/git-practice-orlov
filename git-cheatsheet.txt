@@ -1,0 +1,132 @@
+
+                    ШПАРГАЛКА ПО КОМАНДАМ GIT
+git version
+Показывает установленную версию Git (проверка, что Git работает).
+
+git config --global user.name "ваш_ник"
+Задаёт имя автора коммитов для всех репозиториев на компьютере.
+
+git config --global user.email "ваша_почта@yandex.ru"
+Задаёт e-mail автора коммитов.
+
+git config --list
+Показывает все текущие настройки Git.
+cd Documents/ 
+перейти в папку
+cd .. 
+подняться на уровень выше
+mkdir backend
+создать папку
+ls 
+показать содержимое папки
+pwd
+показать текущий путь
+
+
+git init -b main
+Создаёт локальный репозиторий в текущей папке.
+
+git status
+Показывает состояние репозитория: какие файлы новые (Untracked),
+изменены (modified), добавлены в индекс (new file).
+
+git add .
+Добавляет все изменения (кроме игнорируемых) в индекс (staging area).
+
+git add Program/Program.cs
+Добавляет в индекс только один конкретный файл.
+
+git commit -m "сообщение"
+Создаёт коммит из проиндексированных изменений.
+
+git log    Полная история коммитов: хеш, автор, дата, сообщение.
+
+git log --oneline
+Компактная история: одна строка на коммит (короткий хеш + сообщение).
+
+git show <хеш>
+Показывает детали коммита и diff (какие строки добавлены/удалены).
+
+
+git remote add origin <ссылка_на_репозиторий>
+Привязывает удалённый репозиторий к локальному под именем origin.
+
+git remote -v
+Проверяет подключённые удалённые репозитории (fetch и push).
+
+git push -u origin main
+Отправляет ветку main на сервер. Флаг -u настраивает отслеживание,
+после чего можно писать просто git push / git pull.
+
+git push --set-upstream origin feature
+То же самое для новой ветки feature.
+
+git pull
+Забирает изменения с сервера и объединяет с локальной веткой.
+
+git branch -a
+Показывает все ветки: локальные и удалённые.
+
+
+git branch
+Список локальных веток (* - текущая ветка).
+
+git branch hotfix
+Создаёт ветку, но остаётся в текущей.
+
+git checkout -b new-feature
+(старый способ)
+git switch -c feature
+(современный способ)
+Создают ветку и сразу переключаются на неё.
+
+git checkout main
+(старый способ)
+git switch main
+(современный способ)
+Переключение на существующую ветку.
+
+git branch -d hotfix
+Безопасное удаление ветки (только если изменения слиты).
+
+
+ПРИМЕРЫ ИЗ МОЕЙ ЛАБОРАТОРНОЙ РАБОТЫ
+
+
+Настройка пользователя:
+git config --global user.name VanyaOrlov2009
+git config --global user.email orlovvana776@gmail.com
+
+Создание структуры проекта:
+cd Documents/
+mkdir Lab2_ISRPO_orlov
+cd Lab2_ISRPO_orlov
+mkdir backend
+cd backend
+git init -b main
+
+
+Создание консольного приложения .NET:
+dotnet new console -o Program --use-program-main
+
+Коммиты:
+git commit -m "Initial commit: create console app" 
+git commit -m "Add user name input and greeting"     
+
+
+Эксперименты с ветками:
+git checkout -b new-feature
+git branch hotfix
+git switch -c feature
+git switch main
+git branch -d hotfix
+
+ПРОБЛЕМЫ, С КОТОРЫМИ СТОЛКНУЛСЯ, И ИХ РЕШЕНИЯ
+
+Проблема 1. После git log терминал показывает ":" и не принимает команды.
+Решение: нажать английскую букву q (или Ctrl+C, если q не работает).
+
+Проблема 2. git push в новой ветке выдаёт ошибку:
+"fatal: The current branch feature has no upstream branch".
+Решение: выполнить подсказанную Git команду
+git push --set-upstream origin feature
